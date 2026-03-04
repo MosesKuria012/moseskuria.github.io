@@ -1380,6 +1380,173 @@
       }
 
       /* ─────────────────────────────────────────
+         AWS COMMUNITY BUILDER — standalone section
+      ───────────────────────────────────────── */
+      #community-builder {
+        background: var(--black);
+        border-top: 1px solid rgba(255, 153, 0, 0.12);
+        border-bottom: 1px solid rgba(255, 153, 0, 0.12);
+      }
+      .cb-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+      @media (max-width: 960px) {
+        .cb-inner {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+      }
+
+      .cb-photo-frame {
+        position: relative;
+        border-radius: 4px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 153, 0, 0.25);
+        box-shadow:
+          0 24px 60px rgba(0, 0, 0, 0.6),
+          0 0 40px rgba(255, 153, 0, 0.06);
+      }
+      .cb-photo-frame img {
+        width: 100%;
+        display: block;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+      .cb-photo-frame:hover img {
+        transform: scale(1.025);
+      }
+      .cb-photo-frame::before,
+      .cb-photo-frame::after {
+        content: '';
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        z-index: 2;
+        pointer-events: none;
+      }
+      .cb-photo-frame::before {
+        top: 6px;
+        left: 6px;
+        border-top: 2px solid var(--amber);
+        border-left: 2px solid var(--amber);
+      }
+      .cb-photo-frame::after {
+        bottom: 6px;
+        right: 6px;
+        border-bottom: 2px solid var(--amber);
+        border-right: 2px solid var(--amber);
+      }
+      .cb-photo-frame .photo-scan {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 3px,
+          rgba(255, 153, 0, 0.025) 3px,
+          rgba(255, 153, 0, 0.025) 4px
+        );
+      }
+
+      .cb-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+      }
+      .cb-eyebrow {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono-sm);
+        color: var(--amber);
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+      }
+      .cb-eyebrow::before {
+        content: '';
+        width: 28px;
+        height: 1px;
+        background: var(--amber);
+        box-shadow: 0 0 8px var(--amber);
+        flex-shrink: 0;
+      }
+      .cb-title {
+        font-family: var(--font-display);
+        font-size: clamp(2.8rem, 5vw, 5rem);
+        line-height: 0.95;
+        letter-spacing: 0.04em;
+        color: #fff;
+      }
+      .cb-title span {
+        color: var(--amber);
+        text-shadow: 0 0 28px rgba(255, 153, 0, 0.4);
+      }
+      .cb-desc {
+        font-size: var(--fs-body);
+        line-height: 1.85;
+        color: var(--text-dim);
+        border-left: 2px solid rgba(255, 153, 0, 0.35);
+        padding-left: 1.2rem;
+      }
+      .cb-desc strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+      .cb-stats {
+        display: flex;
+        gap: 2.5rem;
+        flex-wrap: wrap;
+      }
+      .cb-stat {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+      .cb-stat-num {
+        font-family: var(--font-display);
+        font-size: 2.2rem;
+        color: var(--amber);
+        text-shadow: 0 0 16px rgba(255, 153, 0, 0.3);
+        line-height: 1;
+      }
+      .cb-stat-label {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono-sm);
+        color: var(--text-dim);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .cb-badge-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-top: 0.4rem;
+      }
+      .cb-verified-pill {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono-sm);
+        color: var(--amber);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 0.3rem 0.9rem;
+        border: 1px solid rgba(255, 153, 0, 0.3);
+        background: rgba(255, 153, 0, 0.04);
+      }
+      .cb-aws-wordmark {
+        font-family: var(--font-display);
+        font-size: 1.4rem;
+        color: var(--amber);
+        letter-spacing: 0.08em;
+        text-shadow: 0 0 14px rgba(255, 153, 0, 0.3);
+      }
+
+      /* ─────────────────────────────────────────
          CERTS — Change 2: visual badge images
          2 cols mobile → 3 tablet → 4 laptop+
          Degree stays as a full-width bar
@@ -2128,16 +2295,27 @@
       <div class="about-grid">
         <div class="about-story">
           <p>
-            My journey in technology started with <span>video games</span>. Having not grown up with technology up until I was 15 resulted in the obsession of playing games with my mom's <span>new touch screen</span> phone in the evenings because it also dubled as a her work phone during the day. The only rule was to ensure it was fully charged by morning 😂. The curiosity to learn how games are made and why they work on certain phones and not others led me into a rabbit hole that exposed me to software development.             
+            My journey in technology started with <span>video games</span>.
+            Having not grown up with technology up until I was 15 resulted in
+            the obsession of playing games with my mom's
+            <span>new touch screen</span> phone in the evenings because it also
+            dubled as a her work phone during the day. The only rule was to
+            ensure it was fully charged by morning 😂. The curiosity to learn
+            how games are made and why they work on certain phones and not
+            others led me into a rabbit hole that exposed me to software
+            development.
           </p>
           <p>
-            It was during my 1st  year of campus that I had a programming unit that exposed me to computer programming. The exposure to C and C++opened a pandora's box in my mind. <span>Writing code never felt natural</span>.
-            
+            It was during my 1st year of campus that I had a programming unit
+            that exposed me to computer programming. The exposure to C and
+            C++opened a pandora's box in my mind.
+            <span>Writing code never felt natural</span>.
           </p>
 
           <p>
-            Then came <span>networking</span>. Pursuing CCNA 200-301 and exposure to networking architecture of how systems
-            communicate clicked in a way nothing else had. I graduated with a
+            Then came <span>networking</span>. Pursuing CCNA 200-301 and
+            exposure to networking architecture of how systems communicate
+            clicked in a way nothing else had. I graduated with a
             <span>BSc. in Electrical &amp; Electronics Engineering</span> from
             Kenyatta University and cloud was the natural next frontier.
           </p>
@@ -2226,7 +2404,8 @@
           <p class="role-desc">
             Terraform is my native language. I build reusable module libraries,
             enforce infrastructure consistency across environments, and replace
-            manual processes with pipelines. Production reliability my top priority.
+            manual processes with pipelines. Production reliability my top
+            priority.
           </p>
           <div class="role-tags">
             <span class="role-tag">Terraform</span
@@ -2728,6 +2907,69 @@
     </section>
 
     <!-- ─────────────────────────────────────────
+         AWS COMMUNITY BUILDER
+    ───────────────────────────────────────── -->
+    <section id="community-builder">
+      <div class="section-header">
+        <span class="section-num">05 /</span>
+        <h2 class="section-title">COMMUNITY BUILDER</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="cb-inner">
+        <!-- Photo — your AWS Community Builder shot -->
+        <!--
+          Save your photo as: images/aws-community-builder.jpg
+          in the same folder as index.html
+        -->
+        <div class="cb-photo-frame">
+          <img
+            src="images/aws-community-builder.jpg"
+            alt="Moses Kuria — AWS Community Builder at AWS office"
+            onerror="this.src = 'images/aws-community-builder.png'"
+          />
+          <div class="photo-scan"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="cb-content">
+          <div class="cb-eyebrow">Recognition</div>
+          <h3 class="cb-title">AWS<br /><span>Community</span><br />Builder</h3>
+          <p class="cb-desc">
+            Selected as an <strong>AWS Community Builder</strong> — a
+            recognition by Amazon Web Services for individuals who actively
+            share cloud knowledge, contribute to the community, and help others
+            navigate the AWS ecosystem. <br /><br />
+            As a builder, I produce technical content on
+            <strong
+              >cloud architecture, Terraform, and infrastructure
+              engineering</strong
+            >
+            — helping engineers in Kenya and across Africa access the same
+            quality of knowledge available globally.
+          </p>
+          <div class="cb-stats">
+            <div class="cb-stat">
+              <span class="cb-stat-num">3+</span>
+              <span class="cb-stat-label">Published Articles</span>
+            </div>
+            <div class="cb-stat">
+              <span class="cb-stat-num">AWS</span>
+              <span class="cb-stat-label">Community Builder</span>
+            </div>
+            <div class="cb-stat">
+              <span class="cb-stat-num">🇰🇪</span>
+              <span class="cb-stat-label">Nairobi, Kenya</span>
+            </div>
+          </div>
+          <div class="cb-badge-row">
+            <span class="cb-aws-wordmark">AWS Community Builder</span>
+            <span class="cb-verified-pill">✓ Verified</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────
          CERTS — visual badge images from Credly
          Degree bar + 4-card responsive grid
     ───────────────────────────────────────── -->
@@ -2853,7 +3095,6 @@
           <div class="cert-badge-img-wrap">
             <img
               src="resume/CCNA-logo.png"
-              
               alt="Cisco CCNA badge"
               loading="lazy"
             />
@@ -3007,7 +3248,8 @@
             My Cloud Support Engineering Internship Interview
           </div>
           <p class="medium-excerpt">
-           A blog that delves deeper into the expectations of an AWS internship interview. 
+            A blog that delves deeper into the expectations of an AWS internship
+            interview.
           </p>
           <div class="medium-meta"><span class="medium-read">Read</span></div>
         </a>
@@ -3019,10 +3261,13 @@
         >
           <span class="medium-tag">AWS · VPC FlowLogs </span>
           <div class="medium-title">
-            Troubleshooting Internal Connectivity in an AWS VPC Using VPC Flow Logs Overview
+            Troubleshooting Internal Connectivity in an AWS VPC Using VPC Flow
+            Logs Overview
           </div>
           <p class="medium-excerpt">
-            Scenario based troubleshooting of AWS VPC using Flowlogs. The project show cases an issue a customer has when 2 ec2 instance fail to communicate in the same VPC.
+            Scenario based troubleshooting of AWS VPC using Flowlogs. The
+            project show cases an issue a customer has when 2 ec2 instance fail
+            to communicate in the same VPC.
           </p>
           <div class="medium-meta"><span class="medium-read">Read</span></div>
         </a>
@@ -3037,7 +3282,8 @@
             Passed AWS Solutions Architect Professional with a Score of 833
           </div>
           <p class="medium-excerpt">
-            This blog expores my preparation, resources, test scores and advise on how to tackle AWS Solutions Architect - Professional.
+            This blog expores my preparation, resources, test scores and advise
+            on how to tackle AWS Solutions Architect - Professional.
           </p>
           <div class="medium-meta"><span class="medium-read">Read</span></div>
         </a>
@@ -3048,11 +3294,11 @@
           target="_blank"
         >
           <span class="medium-tag">AWS · Serverless</span>
-          <div class="medium-title">
-            Wallpaper as a Service
-          </div>
+          <div class="medium-title">Wallpaper as a Service</div>
           <p class="medium-excerpt">
-            Learn how I leveraged, S3, DynamoDB, AWS Amplify, AWS Lambda, and AWS API Gateway to create a randomized wallpaper app all within the AWS Free tier. 
+            Learn how I leveraged, S3, DynamoDB, AWS Amplify, AWS Lambda, and
+            AWS API Gateway to create a randomized wallpaper app all within the
+            AWS Free tier.
           </p>
           <div class="medium-meta"><span class="medium-read">Read</span></div>
         </a>
@@ -3063,12 +3309,8 @@
           target="_blank"
         >
           <span class="medium-tag">AWS · Certifications</span>
-          <div class="medium-title">
-            Passing SAA-C03
-          </div>
-          <p class="medium-excerpt">
-            Tips to pass AWS SAA-C03.
-          </p>
+          <div class="medium-title">Passing SAA-C03</div>
+          <p class="medium-excerpt">Tips to pass AWS SAA-C03.</p>
           <div class="medium-meta"><span class="medium-read">Read</span></div>
         </a>
 
@@ -3079,10 +3321,13 @@
         >
           <span class="medium-tag">· AWS VPC </span>
           <div class="medium-title">
-            Step-by-Step Guide to Building an AWS VPC with Public and Private Subnets, NAT Gateway, and Internet Gateway
+            Step-by-Step Guide to Building an AWS VPC with Public and Private
+            Subnets, NAT Gateway, and Internet Gateway
           </div>
           <p class="medium-excerpt">
-            This blog showcases how to manually create custom VPCs in AWS. It intergrates public, private subnets, NAT Gateway, Internet gateway, route tables and tests using EC2 by pinging the google server.
+            This blog showcases how to manually create custom VPCs in AWS. It
+            intergrates public, private subnets, NAT Gateway, Internet gateway,
+            route tables and tests using EC2 by pinging the google server.
           </p>
           <div class="medium-meta"><span class="medium-read">Read</span></div>
         </a>
@@ -3093,11 +3338,12 @@
           target="_blank"
         >
           <span class="medium-tag">· AWS VPC</span>
-          <div class="medium-title">
-            How to create VPCs and Subnets in AWS
-          </div>
+          <div class="medium-title">How to create VPCs and Subnets in AWS</div>
           <p class="medium-excerpt">
-            The blog helps provide guidance on the creation of basic VPCs and Subnets in the created VPC. VPCs are private in nature but subnetting can help make certain subnets public and accessible by the public AWS services or from the public Internet.
+            The blog helps provide guidance on the creation of basic VPCs and
+            Subnets in the created VPC. VPCs are private in nature but
+            subnetting can help make certain subnets public and accessible by
+            the public AWS services or from the public Internet.
           </p>
           <div class="medium-meta"><span class="medium-read">Read</span></div>
         </a>
@@ -3109,10 +3355,15 @@
         >
           <span class="medium-tag">·S3 ·Route 53 ·CloudFront·ACM</span>
           <div class="medium-title">
-            Building an Online Resume on AWS using S3, Route 53, CloudFront, and ACM
+            Building an Online Resume on AWS using S3, Route 53, CloudFront, and
+            ACM
           </div>
           <p class="medium-excerpt">
-            The objective of the project was to create an online resume leveraging S3, Route 53, CloudFront, and ACM. The purpose of undertaking in this project is to have a resume accessible by anyone from anywhere and also demonstrate these skills to a potential employer.
+            The objective of the project was to create an online resume
+            leveraging S3, Route 53, CloudFront, and ACM. The purpose of
+            undertaking in this project is to have a resume accessible by anyone
+            from anywhere and also demonstrate these skills to a potential
+            employer.
           </p>
           <div class="medium-meta"><span class="medium-read">Read</span></div>
         </a>
@@ -3127,7 +3378,10 @@
             EC2 Connection Using Instance Connect vs SSH
           </div>
           <p class="medium-excerpt">
-            EC Instance Connect, Session Manager, SSH client and EC2 serial console are the various ways one can connect to an EC2 Instance. For the discussion we shall cover how to connect to EC2 instances using EC2 instance Connect and SSH Client.
+            EC Instance Connect, Session Manager, SSH client and EC2 serial
+            console are the various ways one can connect to an EC2 Instance. For
+            the discussion we shall cover how to connect to EC2 instances using
+            EC2 instance Connect and SSH Client.
           </p>
           <div class="medium-meta"><span class="medium-read">Read</span></div>
         </a>
@@ -3167,7 +3421,6 @@
           class="contact-link"
           >GitHub</a
         >
-        
       </div>
     </section>
 
